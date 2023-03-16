@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import USERSLA from "./Database/userSLA.mjs";
 import CLOUD from "./Database/cloudSLA.mjs";
+import uploadFiles from "./uploadFiles.mjs";
 
 const PORT = 3000;
 
@@ -13,16 +14,22 @@ mongoose.connect("mongodb://0.0.0.0:27017/test",{
 }).then(() => console.log("connection success...")).catch((err)=> console.log(err));
 
 try {
-    const result = await new CLOUD({
-        CloudName: "String",
-        // dataDescription: "String",
-        Security : "High",
-        StorageCapacity: "High",
-        Bandwith: "Low",
-        Price: 100
-    }).save();
+    // const result = await new CLOUD({
+    //     CloudName: "String",
+    //     // dataDescription: "String",
+    //     Security : "High",
+    //     StorageCapacity: "High",
+    //     Bandwith: "Low",
+    //     Price: 100
+    // }).save();
 
-    console.log(result);
+    // console.log(result);
+    app.get("/", (req, res) => {
+        res.send("Hello There").status(200)
+    })
+
+    app.use(uploadFiles);
+    
 } catch (error) {
    console.log(error); 
 }
