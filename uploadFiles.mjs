@@ -19,21 +19,21 @@ const storage = multer.diskStorage({
   },
 
   filename: (req, file, cb) => {
-    mimetypevalue = file.mimetype;
-    console.log(mimetypevalue);
+    mimetypevalue = file.mimetype.split("/");
     var fileExtension = file.originalname.split(".");
-    let x = Math.floor(Math.random() * 1000 + 1);
-    filename = `${x}-${fileExtension[0]}`;
+    let x = Math.floor(Math.random() * 10000 + 1);
+    filename = `${x}_${fileExtension[0]}_${mimetypevalue[0]}_${mimetypevalue[1]}`;
     cb(null, `${filename}.${fileExtension[1]}`);
   },
 });
 
 const upload = multer({ storage: storage });
 
-app.post("/upload", upload.array("files"), async(req, res) => {
+app.post("/upload/:slaId", upload.array("files"), async(req, res) => {
 
     try {
-        res.send("uploaded").status(200)
+        const result = await USERSLA.findOne({_id : req.params.slaId});
+        res.send(result).status(200)
     } catch (error) {
         console.log(error)
         res.send(error).status(200)

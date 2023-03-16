@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const cloudSchema = new mongoose.Schema({
-    CloudName: String,
-    Security : String,
-    StorageCapacity: String,
-    Bandwith: String,
-    Price: Number,
+    cloudName: String, //Name
+    security : Number, //featuer
+    storageCapacity: Number, //feature
+    bandwidth: Number, //feature
+    price: Number, //Priceing
 })
 
 const CLOUD = new mongoose.model("cloud", cloudSchema);
