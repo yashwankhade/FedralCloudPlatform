@@ -1,6 +1,7 @@
 import express from "express";
 import multer from "multer"
 import USER from "./Database/userCollection.mjs";
+import LOG from "./Database/userLogCollection.mjs";
 
 const app = express.Router();
 
@@ -17,11 +18,17 @@ app.post("/newuser", uploadMultiple, async(req, res) => {
             userName : req.body.userName,
             userEmail : req.body.email,
         })
-    
+
         user.hashPassword(req.body.password);
         const result = await user.save();
 
-        res.send(result).status(200);
+        const userLog = new LOG({
+            userId : result._id
+        })
+
+        const resultLog = await userLog.save()
+
+        res.send({user: result, userLog: resultLog}).status(200);
     } catch (error) {
         const response = {
             status: "Failure",

@@ -9,7 +9,7 @@ app.patch("/selectcloud", async(req, res) => {
 
         await USERSLA.updateOne({_id : req.query.slaid},{
             $set : {
-                cloudSLA : cloud.cloudName,
+                cloudSLA : cloud._id,
                 cloudPrice : cloud.price
             }
         })

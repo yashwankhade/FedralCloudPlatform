@@ -9,8 +9,9 @@ const logSchema = mongoose.Schema({
             type : Date,
             default : Date.now()
         },
-        slaId : String,
-    }]
+        slaId : String 
+    }],
+    
 })
 
 logSchema.index({original : "text"});

@@ -6,6 +6,8 @@ import createUserSLA from  "./createSLA.mjs";
 import createCloudSLA from "./createCloudSLA.mjs";
 import selectCloud from "./selectCloud.mjs";
 import findClouds from "./findCloud.mjs";
+import login from "./login/login.mjs";
+import getLogs from "./getLogs.mjs";
 const PORT = 3000;
 
 const app = express();
@@ -31,6 +33,10 @@ try {
     app.use(selectCloud); //api to select and finalize the cloud the user wants;
 
     app.use(findClouds); //cloud filtering;
+
+    app.use(login);
+
+    app.use(getLogs); //get User Logs
     
 } catch (error) {
    console.log(error); 

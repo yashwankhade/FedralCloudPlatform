@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const cloudSchema = new mongoose.Schema({
     cloudName: String, //Name
+    cloud :String,
     security : Number, //featuer
     storageCapacity: Number, //feature
     bandwidth: Number, //feature
