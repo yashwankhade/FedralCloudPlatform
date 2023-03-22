@@ -6,7 +6,6 @@ import express from "express";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import cloudNode from "./cloudNode.mjs";
-import fs from "fs";
 
 const app = express.Router();
 
@@ -29,7 +28,7 @@ const storage = multer.diskStorage({
     fileExtension = file.originalname.split(".");
     fileExtentionArray.push(fileExtension);
     let x = Math.floor(Math.random() * 10000 + 1);
-    filename = `${x}_${fileExtension[0]}_${mimetypevalue[0]}_${mimetypevalue[1]}_${fileExtension[1]}`;
+    filename = `${x}_${fileExtension[0]}_${mimetypevalue[0]}_${mimetypevalue[1]}`;
     fileNameArray.push(filename);
     cb(null, `${filename}.${fileExtension[1]}`);
   },
@@ -43,8 +42,8 @@ app.post("/upload/:slaId", upload.array("files"), async(req, res) => {
         const result = await USERSLA.findOne({_id : req.params.slaId});
         const cloud = await CLOUD.findOne({_id : result.cloudSLA});
         for(let i = 0; i < fileNameArray.length; i++){
-        const cloudLink = await cloudNode(fileNameArray[i], cloud.cloudName, cloud.cloud, fileExtentionArray[i][1]);
-
+        const cloudLink = await cloudNode(fileNameArray[i], cloud.cloudName, cloud.cloud, fileExtentionArray[i][1], req.params.slaId);
+        console.log(cloudLink);
         const metadata = {
           original: fileExtentionArray[i][0],
           stored : cloudLink,

@@ -8,6 +8,7 @@ import selectCloud from "./selectCloud.mjs";
 import findClouds from "./findCloud.mjs";
 import login from "./login/login.mjs";
 import getLogs from "./getLogs.mjs";
+import reDeploy from "./reDeploy.mjs";
 const PORT = 3000;
 
 const app = express();
@@ -37,6 +38,8 @@ try {
     app.use(login);
 
     app.use(getLogs); //get User Logs
+
+    app.use(reDeploy);
     
 } catch (error) {
    console.log(error); 

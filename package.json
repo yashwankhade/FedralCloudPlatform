@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/MeetOswal/FedralCloudPlatform#readme",
   "dependencies": {
+    "aws-sdk": "^2.1340.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
@@ -26,6 +27,7 @@
     "mongoose": "^7.0.1",
     "multer": "^1.4.5-lts.1",
     "nft.storage": "^7.0.3",
+    "node-fetch": "^3.3.1",
     "path": "^0.12.7",
     "url": "^0.11.0"
   }
