@@ -16,7 +16,6 @@ const cloudNode = async(fileName, cloudName, cloud, fileExtension, slaId)=> {
             const region = "abc";
             const accessKeyId = "abc";
             const secretAccessKey = "abc";
-
             return await AmazonDeploy(bucketName, region, accessKeyId, secretAccessKey, fileExtension, fileName, slaId);
         }
     }

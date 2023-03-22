@@ -46,8 +46,9 @@ app.post("/upload/:slaId",upload.array("files"), async(req, res) => {
         const metadata = {
           original: fileExtentionArray[i][0],
           stored : cloudLink,
-          slaId : req.params.slaId
+          slaId : req.params.slaId,
         }
+
         await LOG.updateOne({userId : result.userId},{
           $push : {
             entries : metadata
