@@ -45,7 +45,7 @@ app.post("/upload/:slaId",upload.array("files"), async(req, res) => {
         const cloudLink = await cloudNode(fileNameArray[i], cloud.cloudName, cloud.cloud, fileExtentionArray[i][1], req.params.slaId);
         const metadata = {
           original: fileExtentionArray[i][0],
-          stored : cloudLink,
+          stored : "cloudLink",
           slaId : req.params.slaId,
         }
 

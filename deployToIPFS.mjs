@@ -51,7 +51,7 @@ async function createMetadata(meta, API) {
     await fetch(url, {method: "Get"}).then(res => res.json()).then(async(json) => {
 
       url_data = json.properties.origins.data.replace("ipfs://", "https://ipfs.io/ipfs/");
-     
+     console.log(url_data);
     })
     return url_data;
     
