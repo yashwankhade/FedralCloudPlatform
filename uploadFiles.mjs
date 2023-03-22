@@ -36,7 +36,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.post("/upload/:slaId", upload.array("files"), async(req, res) => {
+app.post("/upload/:slaId",upload.array("files"), async(req, res) => {
 
     try {
         const result = await USERSLA.findOne({_id : req.params.slaId});
