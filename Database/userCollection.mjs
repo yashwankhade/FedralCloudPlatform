@@ -10,9 +10,9 @@ const userSchema = mongoose.Schema({
     userPassword : String,
 })
 
-userSchema.methods.hashPassword = async function (userPassword, next) {
-    this.userPassword = await bcrypt.hash(userPassword, 10);
-    return("Done")
+userSchema.methods.hashPassword = async function (password, next) {
+    this.userPassword = await bcrypt.hash(password, 10);
+    return("Done");
 };
 
 const USER = mongoose.model("user", userSchema);

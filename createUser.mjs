@@ -17,9 +17,10 @@ app.post("/newuser", uploadMultiple, async(req, res) => {
         const user = new USER({
             userName : req.body.userName,
             userEmail : req.body.email,
+            userPassword : req.body.password
         })
 
-        user.hashPassword(req.body.password);
+        await user.hashPassword(req.body.password);
         const result = await user.save();
 
         const userLog = new LOG({
