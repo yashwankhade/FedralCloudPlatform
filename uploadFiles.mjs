@@ -37,13 +37,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.post("/upload/:slaId",upload.array("files"), async(req, res) => {
-
+  
     try {
         const result = await USERSLA.findOne({_id : req.params.slaId});
         const cloud = await CLOUD.findOne({_id : result.cloudSLA});
         for(let i = 0; i < fileNameArray.length; i++){
         const cloudLink = await cloudNode(fileNameArray[i], cloud.cloudName, cloud.cloud, fileExtentionArray[i][1], req.params.slaId);
-        console.log(cloudLink);
         const metadata = {
           original: fileExtentionArray[i][0],
           stored : cloudLink,
@@ -65,7 +64,7 @@ app.post("/upload/:slaId",upload.array("files"), async(req, res) => {
         fileNameArray = [];
         fileExtentionArray = [];
 
-        res.send({asn2: cloud}).status(200)
+        res.send({asn2: "Success"}).status(200)
     } catch (error) {
         console.log(error)
         res.send(error).status(200)

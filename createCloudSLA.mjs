@@ -11,7 +11,8 @@ const uploadMultiple = upload.fields([
     {name : "bandwidth"},
     {name : "storageCapacity"},
     {name : "cloudName"},
-    {name : "price"}
+    {name : "price"},
+    {name : "cloud"}
 ])
 
 app.post("/addcloud", uploadMultiple, async(req, res) => {
@@ -24,7 +25,8 @@ app.post("/addcloud", uploadMultiple, async(req, res) => {
             bandwidth : req.body.bandwidth,
             storageCapacity : req.body.storageCapacity,
             cloudName : req.body.cloudName,
-            price : req.body.price
+            price : req.body.price,
+            cloud : req.body.cloud
         })
 
         const result = await createCloudSLA.save();
