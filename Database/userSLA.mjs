@@ -8,7 +8,6 @@ const userschema = new mongoose.Schema({
     bandwidth: Number, //feature
     itemsStored : Number, //items number
     userId : String, //userId
-    bcryptSLAId : String,
     cloudSLA:{ //Cloud SLA Id
         type: String,
         default: "None"
